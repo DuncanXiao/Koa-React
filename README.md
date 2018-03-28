@@ -3,7 +3,7 @@ Koa-React
 ## Framework
 ```file
   ├── init # 数据库初始化目录
-  │   ├── index.js # 初始化入口文件
+  │   ├── index.jsx # 初始化入口文件
   │   ├── sql/    # sql脚本文件目录
   │   └── util/   # 工具操作目录
   ├── package.json
