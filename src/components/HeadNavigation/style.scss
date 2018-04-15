@@ -1,0 +1,16 @@
+@import 'constant/device/index.scss';
+@import 'constant/color/index.scss';
+
+@media (min-width: $desktop-min-width) {
+  .navigation-container {
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    .link-button {
+      color: white;
+      cursor: pointer;
+      line-height: 40px;
+    }
+  }
+
+}

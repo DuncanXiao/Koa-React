@@ -1,8 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const appDirectory = path.resolve(__dirname, 'src');
 const builtDirectory = path.resolve(__dirname, 'dist');
+const globalStyleDirectory = appDirectory + '/stylesheet/global';
+const extractAppStyle = new ExtractTextPlugin('[name]-apps.css');
+const extractGlobalStyle = new ExtractTextPlugin('[name]-global.css');
+
 module.exports = {
   entry: {
     index: ['babel-polyfill', './src/index.jsx']
@@ -22,20 +27,48 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss)$/,
         include: appDirectory,
-        use: [
-          {loader: 'style-loader'},
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              camelCase: true,
-              localIdentName: '[local]--[hash:base64:5]'
+        exclude: globalStyleDirectory,
+        use: extractAppStyle.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                camelCase: true,
+                localIdentName: '[local]--[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                includePaths: [
+                  appDirectory+'/stylesheet'
+                ]
+              }
             }
-          },
-          {loader: 'sass-loader'}
-        ]
+          ]
+        })
+      },
+      {
+        test: /\.css$/,
+        include: globalStyleDirectory,
+        use: extractGlobalStyle.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader'
+            }
+          ]
+        })
+      },
+      {
+        test: /\.(ttf|woff2|woff|eot|svg)/,
+        include: appDirectory,
+        use: {loader: 'file-loader'}
       }
     ]
   },
@@ -44,10 +77,14 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     modules: ["node_modules"],
     alias: {
-      Component: appDirectory + '/Component'
+      Components: appDirectory + '/components',
+      Apps: appDirectory + '/apps',
+      Stylesheet: appDirectory + 'constant'
     }
   },
   plugins: [
+    extractGlobalStyle,
+    extractAppStyle,
     new webpack.ProvidePlugin({
       React: 'react',
       ReactDOM: 'react-dom'
