@@ -1,0 +1,16 @@
+@import 'constant/color/index.scss';
+
+:global {
+  body {
+    background-color: $background-gray;
+  }
+  .container {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      width: 980px;
+    }
+  }
+}
