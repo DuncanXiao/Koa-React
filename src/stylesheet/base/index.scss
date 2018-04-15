@@ -2,10 +2,13 @@
 
 :global {
   body {
-    background-color: $background-gray;
+    background-color: $body-gray;
   }
   .container {
     width: 100%;
+  }
+  .main-container {
+    background-color: $warm;
   }
 
   @media (min-width: 768px) {
