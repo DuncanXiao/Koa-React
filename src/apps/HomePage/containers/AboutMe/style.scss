@@ -1,0 +1,43 @@
+@import 'constant/device/index.scss';
+@import 'constant/color/index.scss';
+
+@media (min-width: $desktop-min-width) {
+  .main-me {
+    border-radius: 10px;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    .title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      .tips {
+        order: 1;
+        flex-shrink: 0;
+        width: 50px;
+        font-size: 16px;
+        text-align: center;
+        display: inline-block;
+      }
+      &:before {
+        content: '';
+        border-top: 1px solid black;
+        display: inline-block;
+        order: 0;
+        width: 100%;
+      }
+      &:after {
+        content: '';
+        border-top: 1px solid black;
+        display: inline-block;
+        order: 2;
+        width: 100%;
+      }
+    }
+    .information {
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 10px;
+    }
+  }
+}
