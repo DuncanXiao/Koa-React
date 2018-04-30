@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:dev": "webpack --mode development --watch --colors --config ./webpack.dev.config.js",
     "start": "webpack-dev-server --mode development --config ./webpack.dev.config.js ",
-    "deploy": "webpack --mode production --watch --colors --config ./webpack.deploy.config.js"
+    "deploy": "webpack --mode production --watch --colors --config ./webpack.deploy.config.js",
+    "start:server": "node ./dist/index-server.js",
+    "entry": "node ./server/entry.js",
+    "build:server": "webpack --mode development --watch --colors --config ./webpack.server.config.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +25,9 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "ejs": "^2.5.9",
     "ejs-loader": "^0.3.1",
+    "externals-dependencies": "^1.0.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.1.0",
@@ -36,6 +41,12 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "koa": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2",
+    "koa-views": "^6.1.4",
+    "mysql": "^2.15.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0"
