@@ -40,15 +40,19 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "bootstrap": "^3.3.7",
+    "classnames": "^2.2.5",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.4",
     "mysql": "^2.15.0",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "underscore": "^1.9.0"
   }
 }

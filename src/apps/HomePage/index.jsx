@@ -1,7 +1,7 @@
 import { hot } from 'react-hot-loader';
 import styles from './styles.scss';
 import AppLayout from '../AppLayout';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
 import AboutMe from './containers/AboutMe';
 
 const HomePage = () => {
@@ -15,7 +15,6 @@ const HomePage = () => {
                 <AboutMe />
               </Col>
               <Col>
-
               </Col>
             </Row>
           </div>
