@@ -13,7 +13,4 @@ export const navigationBaseData = [{
 }, {
   href: '#',
   content: '编辑文章'
-}, {
-  href: '#',
-  content: '登录'
 }];
