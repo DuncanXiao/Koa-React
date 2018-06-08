@@ -6,6 +6,11 @@ class HomeController {
       title: 'hahaha'
     };
   }
+
+  login () {
+
+  }
+
   text() {
     return 'hhahahhas';
   }

@@ -1,4 +1,5 @@
 import { Button, Form, FormGroup, Col, Checkbox, FormControl } from 'react-bootstrap';
+import 'whatwg-fetch';
 import Modal from 'Components/PopupModal';
 
 class SignModal extends React.Component {
@@ -8,6 +9,20 @@ class SignModal extends React.Component {
 
   handleSignState = () => {
     this.setState((preState)=>({signIn: !preState.signIn}));
+  }
+
+  handleSubmit = () => {
+    if (this.state.signIn) {
+      fetch()
+    } else {
+      fetch('/api/user', {
+        method: 'POST',
+        body: JSON.stringify({
+          name: 'haha',
+          password: 'sss'
+        })
+      })
+    }
   }
 
   render() {
@@ -47,6 +62,7 @@ class SignModal extends React.Component {
                 </Col>
               </FormGroup>
             }
+            <Button onClick={this.handleSubmit}>确认</Button>
           </Form>
         </div>
         <div type="footer">
