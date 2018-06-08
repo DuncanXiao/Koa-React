@@ -3,7 +3,11 @@ import routers from 'Routers';
 import views from 'koa-views';
 import path from 'path';
 import serve from 'koa-static';
+import bodyParser from 'koa-bodyparser';
+
 const app = new Koa();
+
+app.use(bodyParser());
 
 app.use(serve(
   path.join( __dirname, './static')

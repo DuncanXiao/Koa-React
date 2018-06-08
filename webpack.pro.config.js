@@ -1,20 +1,18 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const appDirectory = path.resolve(__dirname, 'src');
-const builtDirectory = path.resolve(__dirname, 'dist');
+const builtDirectory = path.resolve(__dirname, 'server/static/js');
 const globalStyleDirectory = appDirectory + '/stylesheet/global';
 const extractAppStyle = new ExtractTextPlugin('[name]-apps.css');
-const extractGlobalStyle = new ExtractTextPlugin('[name]-global.css');
 
 module.exports = {
   entry: {
-    index: ['babel-polyfill', 'whatwg-fetch', './src/index.jsx']
+    index: ['babel-polyfill', 'whatwg-fetch', './src/apps/server.jsx']
   },
   output: {
     path: builtDirectory,
-    filename: '[name].js',
+    filename: '[name]-product.js',
     publicPath: '/'
   },
   module: {
@@ -52,23 +50,6 @@ module.exports = {
             }
           ]
         })
-      },
-      {
-        test: /\.css$/,
-        include: globalStyleDirectory,
-        use: extractGlobalStyle.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader'
-            }
-          ]
-        })
-      },
-      {
-        test: /\.(ttf|woff2|woff|eot|svg)/,
-        include: appDirectory,
-        use: {loader: 'file-loader'}
       }
     ]
   },
@@ -83,24 +64,10 @@ module.exports = {
     }
   },
   plugins: [
-    extractGlobalStyle,
     extractAppStyle,
     new webpack.ProvidePlugin({
       React: 'react',
       ReactDOM: 'react-dom'
-    }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Koa-React',
-      template: appDirectory + '/index.ejs'
     })
-  ],
-  devServer: {
-    contentBase: builtDirectory,
-    port: 3000,
-    historyApiFallback: true,
-    inline: true,
-    hot: true
-  }
+  ]
 };

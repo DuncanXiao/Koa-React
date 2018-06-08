@@ -1,7 +1,8 @@
 import HomePage from 'Apps/HomePage/index';
-import bootstrap from './stylesheet/global/bootstrap.css';
-import base from './stylesheet/base/index.scss';
+import { hot } from 'react-hot-loader';
+
+const Page = hot(module)(HomePage);
 ReactDOM.render(
-  <HomePage />,
+  <Page />,
   document.getElementById('app-container'),
 );

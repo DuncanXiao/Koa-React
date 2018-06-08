@@ -37,7 +37,9 @@ module.exports = {
       Controllers: serverDirectory + '/controllers',
       Routers: serverDirectory + '/routers',
       Static: serverDirectory + '/static',
-      Views: serverDirectory + '/views'
+      Views: serverDirectory + '/views',
+      Constant: serverDirectory + '/constant',
+      Sql: serverDirectory + '/sql'
     }
   }
 };

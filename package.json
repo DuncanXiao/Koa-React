@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:dev": "webpack --mode development --watch --colors --config ./webpack.dev.config.js",
+    "build:pro": "webpack --mode development --watch --colors --config ./webpack.pro.config.js",
     "start": "webpack-dev-server --mode development --config ./webpack.dev.config.js ",
     "deploy": "webpack --mode production --watch --colors --config ./webpack.deploy.config.js",
     "start:server": "node ./dist/index-server.js",
@@ -48,11 +49,12 @@
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.4",
-    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
-    "underscore": "^1.9.0"
+    "underscore": "^1.9.0",
+    "whatwg-fetch": "^2.0.4"
   }
 }
