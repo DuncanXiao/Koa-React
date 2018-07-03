@@ -11,7 +11,7 @@
     "deploy": "webpack --mode production --watch --colors --config ./webpack.deploy.config.js",
     "start:server": "node ./dist/index-server.js",
     "entry": "node ./server/entry.js",
-    "build:server": "webpack --mode development --watch --colors --config ./webpack.server.config.js"
+    "build:server": "NODE_ENV=$env webpack --mode development --watch --colors --config ./webpack.server.config.js"
   },
   "repository": {
     "type": "git",
@@ -50,11 +50,14 @@
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.4",
     "mysql2": "^1.5.3",
+    "nodemailer": "^4.6.5",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
-    "underscore": "^1.9.0",
+    "sequelize": "^4.38.0",
+    "underscore": "^1.9.1",
+    "validator": "^10.4.0",
     "whatwg-fetch": "^2.0.4"
   }
 }

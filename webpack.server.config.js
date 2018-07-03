@@ -39,7 +39,16 @@ module.exports = {
       Static: serverDirectory + '/static',
       Views: serverDirectory + '/views',
       Constant: serverDirectory + '/constant',
-      Sql: serverDirectory + '/sql'
+      Sql: serverDirectory + '/sql',
+      Utilities: serverDirectory + '/utilities',
+      Model: serverDirectory + '/model'
     }
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
+    })
+  ]
 };

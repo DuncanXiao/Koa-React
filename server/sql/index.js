@@ -1,31 +1,45 @@
-import mysql from 'mysql2';
-
-export const pool = mysql.createPool({
-  connectionLimit : 10,
-  host            : '127.0.0.1',
-  user            : 'root',
-  password        : '123456',
-  database        : 'blog',
-  port: 3306,
-  waitForConnections: true
-});
-
-export const query =  (sql, values) => {
-  return new Promise(( resolve, reject ) => {
-    pool.getConnection((err, connection) => {
-      if (err) {
-        console.log(err)
-        reject( {status: 500, message: err} )
-      } else {
-        connection.query(sql, values, ( err, rows) => {
-          if ( err ) {
-            reject( {status: 400, message: err} )
-          } else {
-            resolve( rows )
-          }
-          connection.release()
-        })
-      }
-    })
-  })
+import Sequelize from 'sequelize';
+const Op = Sequelize.Op;
+const operatorsAliases = {
+  $eq: Op.eq,
+  $ne: Op.ne,
+  $gte: Op.gte,
+  $gt: Op.gt,
+  $lte: Op.lte,
+  $lt: Op.lt,
+  $not: Op.not,
+  $in: Op.in,
+  $notIn: Op.notIn,
+  $is: Op.is,
+  $like: Op.like,
+  $notLike: Op.notLike,
+  $iLike: Op.iLike,
+  $notILike: Op.notILike,
+  $regexp: Op.regexp,
+  $notRegexp: Op.notRegexp,
+  $iRegexp: Op.iRegexp,
+  $notIRegexp: Op.notIRegexp,
+  $between: Op.between,
+  $notBetween: Op.notBetween,
+  $overlap: Op.overlap,
+  $contains: Op.contains,
+  $contained: Op.contained,
+  $adjacent: Op.adjacent,
+  $strictLeft: Op.strictLeft,
+  $strictRight: Op.strictRight,
+  $noExtendRight: Op.noExtendRight,
+  $noExtendLeft: Op.noExtendLeft,
+  $and: Op.and,
+  $or: Op.or,
+  $any: Op.any,
+  $all: Op.all,
+  $values: Op.values,
+  $col: Op.col
 };
+
+export const sequelize = new Sequelize('blog', 'root', '123456', {
+  dialect: 'mysql',
+  host: '127.0.0.1',
+  port: 3306,
+  operatorsAliases: operatorsAliases
+});
