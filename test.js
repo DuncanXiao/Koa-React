@@ -1,8 +1,10 @@
-
-
-const a = 1;
-const b = 1;
-if (a ===b) {
-  console.log('yes');
+async function p() {
+  throw 'error'
 }
-console.log('ha')
+
+async function a() {
+  'ha'
+}
+
+
+Promise.all([p(), a()]).then((v)=>{console.log(v)}).catch(r=>{console.log(r)});

@@ -1,10 +1,19 @@
+create table Mail (
+    email varchar(40) NOT NULL,
+    password varchar(40) NOT NULL,
+    state tinyint DEFAULT 0,
+    code varchar(40) NOT NULL,
+    PRIMARY KEY (email)
+);
+
 create table Users (
     id int(11) NOT NULL auto_increment,
     name varchar(40) NOT NULL,
-    password varchar(8) NOT NULL,
+    email varchar(40) NOT NULL,
     createTime timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updateTime timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY  (id)
+    FOREIGN KEY (email) REFERENCES Mail(email)
 );
 
 create table UserArticles (
