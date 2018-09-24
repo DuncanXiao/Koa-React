@@ -4,6 +4,9 @@ import views from 'koa-views';
 import path from 'path';
 import serve from 'koa-static';
 import bodyParser from 'koa-bodyparser';
+const http = require('http');
+const jwtKoa = require('koa-jwt');
+const { SECREAT } = require('Constant/config');
 
 const app = new Koa();
 
@@ -20,8 +23,12 @@ app.use(views(path.join(__dirname, './views'), {
   }
 }));
 
-app.use(routers.routes()).use(routers.allowedMethods());
+// app.use(jwtKoa({ secret: SECREAT }).unless({
+//   path: [/^\/api\/login/]
+// }));
 
-app.listen(3000, () => {
-  console.log('[demo] route-use-middleware is starting at port 3000')
-});
+app.use(routers.routes()).use(routers.allowedMethods());
+const server = http.createServer(app.callback());
+server.listen(3000, function(){
+  console.log('part: 3000');
+})

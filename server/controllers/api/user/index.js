@@ -8,7 +8,7 @@ class UserController {
       where: {
         email: attributes.email
       }
-    }).then(v => result = {statusCode: 200, message: v})
+    }).then(v => result = {statusCode: 200, message: v.get()})
       .catch(e =>{ throw {statusCode: 500, message: e} });
     return result;
   };
@@ -18,7 +18,7 @@ class UserController {
     if (attributes.name.trim() === '') { throw {status: 400, message: 'create users invalid'}; }
     await userModel.sync().catch(e => { throw {statusCode: 500, message: e} });
     await userModel.create(attributes, sqlOptions)
-      .then(v => result = {statusCode: 201, message: v})
+      .then(v => result = {statusCode: 201, message: v.get()})
       .catch(e => { throw {statusCode: 500, message: e} });
     return result
   };

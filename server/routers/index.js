@@ -1,12 +1,36 @@
 import Router from 'koa-router';
-import homeRouter from './home';
-import userApi from './api/user';
-import emailApi from './api/email';
+import fs from 'fs';
 
 const router = new Router();
 
-router.use('/', homeRouter.routes(), homeRouter.allowedMethods());
-router.use('/api', userApi.routes(), userApi.allowedMethods());
-router.use('/api', emailApi.routes(), emailApi.allowedMethods());
+const routerPaths = [];
+
+const getPathName = (path='') => {
+  let pathNames = fs.readdirSync('./server/routers'+path);
+  pathNames.forEach(function(pathName){
+    if (!(/(\.js)/.test(pathName))) {
+      getPathName(path+'/'+pathName);
+    } else if (path) {
+      routerPaths.push(path);
+    } 
+  });
+}
+
+getPathName();
+
+const initRouter = () => {
+  routerPaths.forEach((routerPath) => {
+    let routerName = require(`.${routerPath}`).default;
+    if (/^(\/home)/.test(routerPath)) {
+      router.use('/', routerName.routes(), routerName.allowedMethods());
+    } else if (/^(\/api)/.test(routerPath)) {
+      router.use('/api', routerName.routes(), routerName.allowedMethods());
+    } else {
+      router.use(routerPath, routerName.routes(), routerName.allowedMethods());
+    }
+  });
+}
+
+initRouter();
 
 export default router;
