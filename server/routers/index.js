@@ -19,6 +19,7 @@ const getPathName = (path='') => {
 getPathName();
 
 const initRouter = () => {
+  const routerPaths = [];
   routerPaths.forEach((routerPath) => {
     let routerName = require(`.${routerPath}`).default;
     if (/^(\/home)/.test(routerPath)) {
@@ -33,4 +34,4 @@ const initRouter = () => {
 
 initRouter();
 
-export default router;
+module.exports = router;

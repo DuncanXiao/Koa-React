@@ -1,11 +1,13 @@
 import Router from 'koa-router';
+import validate from 'koa2-validation';
 import UserController from 'Controllers/api/user';
 import EmailController from 'Controllers/api/email';
+import loginSchema from 'Routers/schema/login';
 import { signToken } from 'Utilities/createJwt';
 
 const loginApi = new Router();
 
-loginApi.post('/login', async(ctx) => {
+loginApi.post('/login', validate(loginSchema),async(ctx) => {
   try {
     const requestBody = ctx.request.query;
     const unidentifiedUser = await EmailController.getEmail(requestBody)

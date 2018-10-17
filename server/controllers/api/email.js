@@ -1,7 +1,7 @@
 import { sequelize } from 'Sql/index';
 import emailModel from 'Model/email';
-import UserController from 'Controllers/api/user';
-import _ from 'underscore';
+const UserController = require('./user');
+const _ = require('underscore');
 
 class EmailController {
 
