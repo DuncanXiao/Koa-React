@@ -1,8 +1,10 @@
-const BaseModel = require('./baseModel');
+import BaseModel from './baseModel';
 
 class EmailModel extends BaseModel {
-  constructor (options) {
-    this.modelName = options.modelName || 'email';
+  constructor (options={}) {
+    Object.assign(options, {modelName: 'emailModel'});
     super(options);
   }
 }
+
+export default EmailModel;

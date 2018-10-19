@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const config = require('config');
 
 const serverDirectory = path.resolve(__dirname, '../server');
 const builtDirectory = path.resolve(__dirname, '../dist');
@@ -22,13 +21,7 @@ const baseSetting = {
   }
 }
 
-const definePlugin = new webpack.DefinePlugin({
-  'process.env': {
-    nodeENV: config.get('env'),
-    nodeDomain: config.get('domain'),
-    nodeDatebaseConfig: config.get('databaseConfig') 
-  }
-})
+const definePlugin = new webpack.DefinePlugin({})
 
 module.exports = {
   baseSetting,
