@@ -9,6 +9,7 @@ const baseSetting = {
     extensions: ['.js', '.jsx'],
     modules: ["node_modules"],
     alias: {
+      Server: serverDirectory,
       Controllers: serverDirectory + '/controllers',
       Routers: serverDirectory + '/routers',
       Static: serverDirectory + '/static',

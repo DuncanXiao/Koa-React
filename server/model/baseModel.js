@@ -1,13 +1,13 @@
 import path from 'path';
 import sequelize from './sequelizes';
-import getFilesName from 'Utilities/getFilesName';
+import { getFilesName } from 'Utilities/getFiles';
 
 const modelMap = {};
 
 const inintModel = () => {
   const sequelizeModels = path.resolve(__dirname, './sequelizes');
   const ignoreFilesName = ['index.js'];
-  const modelFilesName = getFilesName(sequelizeModels, ignoreFilesName);
+  const modelFilesName = getFilesName({ignoreFilesName, rootPath: sequelizeModels});
   modelFilesName.forEach((fileName) => {
     const model = sequelize.import(`${__dirname}/sequelizes/${fileName}`);
     modelMap[`${fileName.replace(/.js/, "")}Model`] = model;

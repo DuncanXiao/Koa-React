@@ -10,10 +10,10 @@
     "start": "webpack-dev-server --mode development --config ./webpack.dev.config.js ",
     "deploy": "webpack --mode production --watch --colors --config ./webpack.deploy.config.js",
     "start:server": "node ./dist/index-server.js",
-    "start1:server": "node ./server/app.js",
+    "start1:server": "node babel-polyfill babel-register ./server/app.js",
     "entry": "node ./server/entry.js",
     "build:server": "NODE_ENV=$env webpack --mode development --watch --colors --config ./webpack/server-dev.config.js",
-    "test:server": "NODE_ENV=server-dev mocha --recursive ./server/.setup.js $(find ./server/test -name '*.test.js')"
+    "test:server": "NODE_ENV=server-dev mocha --recursive ./server/.setup.js $(find ./test -name '*.test.js')"
   },
   "repository": {
     "type": "git",
@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "boom": "^7.2.0",
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
     "config": "^2.0.1",

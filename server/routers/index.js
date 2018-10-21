@@ -1,25 +1,14 @@
 import Router from 'koa-router';
-import fs from 'fs';
+import path from 'path';
+import { getFilesPath } from 'Utilities/getFiles';
 
 const router = new Router();
 
-const routerPaths = [];
-
-const getPathName = (path='') => {
-  let pathNames = fs.readdirSync('./server/routers'+path);
-  pathNames.forEach(function(pathName){
-    if (!(/(\.js)/.test(pathName))) {
-      getPathName(path+'/'+pathName);
-    } else if (path) {
-      routerPaths.push(path);
-    } 
-  });
-}
-
-getPathName();
+const rootPath = path.resolve(__dirname, '../../server/routers');
+const ignoreFilesName = ['index.js'];
+const routerPaths = getFilesPath({rootPath, ignoreFilesName});
 
 const initRouter = () => {
-  const routerPaths = [];
   routerPaths.forEach((routerPath) => {
     let routerName = require(`.${routerPath}`).default;
     if (/^(\/home)/.test(routerPath)) {
