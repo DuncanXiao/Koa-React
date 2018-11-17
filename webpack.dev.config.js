@@ -79,7 +79,8 @@ module.exports = {
     alias: {
       Components: appDirectory + '/components',
       Apps: appDirectory + '/apps',
-      Stylesheet: appDirectory + 'constant'
+      Stylesheet: appDirectory + 'constant',
+      Utilities: appDirectory + 'utilities'
     }
   },
   plugins: [

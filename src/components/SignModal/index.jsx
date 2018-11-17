@@ -1,10 +1,14 @@
 import { Button, Form, FormGroup, Col, Checkbox, FormControl } from 'react-bootstrap';
+// import { cookies } from 'Utilities/cookies';
 import 'whatwg-fetch';
 import Modal from 'Components/PopupModal';
 
 class SignModal extends React.Component {
   state = {
-    signIn: true
+    signIn: true,
+    email: '',
+    password: '',
+    name: ''
   }
 
   handleSignState = () => {
@@ -13,16 +17,29 @@ class SignModal extends React.Component {
 
   handleSubmit = () => {
     if (this.state.signIn) {
-      fetch()
+      fetch('/api/login', {
+        method: 'Post',
+        body: JSON.stringify({
+          password: this.state.password,
+          email: this.state.email
+        })
+      }).then(((response) => {
+        // cookies.set("token", response.message.token, 1);
+      }));
     } else {
       fetch('/api/user', {
         method: 'POST',
         body: JSON.stringify({
-          name: 'haha',
-          password: 'sss'
+          name: this.state.name,
+          password: this.state.password,
+          email: this.state.email
         })
       })
     }
+  }
+
+  handleChange = (e) => {
+    this.setState({ [e.target.type]: e.target.value });
   }
 
   render() {
@@ -43,7 +60,12 @@ class SignModal extends React.Component {
                 Email
               </Col>
               <Col sm={10}>
-                <FormControl type="email" placeholder="Email" />
+                <FormControl
+                  type="email"
+                  placeholder="Email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
               </Col>
             </FormGroup>
             <FormGroup controlId="formHorizontalPassword">
@@ -51,14 +73,24 @@ class SignModal extends React.Component {
                 Password
               </Col>
               <Col sm={10}>
-                <FormControl type="password" placeholder="Password" />
+                <FormControl
+                  type="password"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
               </Col>
             </FormGroup>
             {
-              this.state.signIn &&
+              !this.state.signIn &&
               <FormGroup>
                 <Col smOffset={2} sm={10}>
-                  <Checkbox>Remember me</Checkbox>
+                  <FormControl
+                    type="text"
+                    placeholder="name"
+                    value={this.state.name}
+                    onChange={this.handleChange}
+                  />
                 </Col>
               </FormGroup>
             }

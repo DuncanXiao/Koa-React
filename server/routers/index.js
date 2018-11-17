@@ -1,12 +1,26 @@
 import Router from 'koa-router';
-import homeRouter from './home';
-import userApi from './api/user';
-import emailApi from './api/email';
+import path from 'path';
+import { getFilesPath } from 'Utilities/getFiles';
 
 const router = new Router();
 
-router.use('/', homeRouter.routes(), homeRouter.allowedMethods());
-router.use('/api', userApi.routes(), userApi.allowedMethods());
-router.use('/api', emailApi.routes(), emailApi.allowedMethods());
+const rootPath = path.resolve(__dirname, '../../server/routers');
+const ignoreFilesName = ['index.js'];
+const routerPaths = getFilesPath({rootPath, ignoreFilesName});
 
-export default router;
+const initRouter = () => {
+  routerPaths.forEach((routerPath) => {
+    let routerName = require(`.${routerPath}`).default;
+    if (/^(\/home)/.test(routerPath)) {
+      router.use('/', routerName.routes(), routerName.allowedMethods());
+    } else if (/^(\/api)/.test(routerPath)) {
+      router.use('/api', routerName.routes(), routerName.allowedMethods());
+    } else {
+      router.use(routerPath, routerName.routes(), routerName.allowedMethods());
+    }
+  });
+}
+
+initRouter();
+
+module.exports = router;

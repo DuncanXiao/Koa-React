@@ -1,4 +1,5 @@
 import Sequelize from 'sequelize';
+require('dotenvjs').string();
 const Op = Sequelize.Op;
 const operatorsAliases = {
   $eq: Op.eq,
@@ -37,9 +38,10 @@ const operatorsAliases = {
   $col: Op.col
 };
 
-export const sequelize = new Sequelize('blog', 'root', '123456', {
-  dialect: 'mysql',
-  host: '127.0.0.1',
-  port: 3306,
+export default new Sequelize(process.env.DATABASE_NAME, 
+  process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
+  dialect: process.env.DATABASE_DIALECT,
+  host: process.env.DATABASE_HOST,
+  port: process.env.DATABASE_PORT,
   operatorsAliases: operatorsAliases
 });

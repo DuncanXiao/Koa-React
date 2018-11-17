@@ -5,6 +5,7 @@ const serverDirectory = path.resolve(__dirname, 'server');
 const builtDirectory = path.resolve(__dirname, 'dist');
 
 module.exports = {
+  target: 'node',
   node: {
     __dirname: true,
     path: true

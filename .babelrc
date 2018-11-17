@@ -1,7 +1,18 @@
 {
   "presets": [
-    "env",
+    "es2015",
+    "stage-1",
     "react"
   ],
-  "plugins": ["react-hot-loader/babel", "transform-class-properties"]
+  "plugins": [
+    "react-hot-loader/babel",
+    "transform-class-properties"
+  ],
+  "env": {
+    "server-dev": {
+      "plugins": [
+        [ "babel-plugin-webpack-alias", { "config": "./webpack/${NODE_ENV}.config.js" } ]
+      ]
+    }
+  }
 }

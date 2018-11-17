@@ -9,7 +9,9 @@
     <div id="app-container"></div>
     <script src="/js/index-product.js"></script>
     <script type="application/javascript">
-        window.HomePage()
+        var data = {user: null}
+        if (!!'<%=user%>') {data.user = '<%=user%>'}
+        window.HomePage(data)
     </script>
 </body>
 </html>
