@@ -11,28 +11,28 @@ import http from 'http';
 const app = new Koa();
 
 app.use(async (ctx, next) => {
-  try {
-    await next();
-  } catch (err) {
-    ctx.status = err.status || err.code;
-    ctx.body = {
-      success: false,
-      message: err.message,
-    };
-  }
+	try {
+		await next();
+	} catch (err) {
+		ctx.status = err.status || err.code;
+		ctx.body = {
+			success: false,
+			message: err.message,
+		};
+	}
 });
 
 app.use(bodyParser());
 
 app.use(serve(
-  path.join( __dirname, './static')
+	path.join( __dirname, './static')
 ));
 
 app.use(views(path.join(__dirname, './views'), {
-  extension: 'ejs',
-  map: {
-    ejs: 'ejs'
-  }
+	extension: 'ejs',
+	map: {
+		ejs: 'ejs'
+	}
 }));
 
 // app.use(jwtKoa({ secret: SECREAT }).unless({
@@ -42,6 +42,7 @@ app.use(views(path.join(__dirname, './views'), {
 app.use(routers.routes()).use(routers.allowedMethods());
 const server = http.createServer(app.callback());
 server.listen(3000, function(){
-  console.log('part: 3000');
+	// eslint-disable-next-line no-console
+	console.log('part: 3000');
 });
 export default server;

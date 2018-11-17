@@ -7,11 +7,11 @@ const baseSetting = {
   resolve: {
     enforceExtension: false,
     extensions: ['.js', '.jsx'],
-    modules: ["node_modules"],
+    modules: ['node_modules'],
     alias: {
       Server: serverDirectory,
       Controllers: serverDirectory + '/controllers',
-      Routers: serverDirectory + '/routers',
+      Routers: serverDirectory + '/routers', 
       Static: serverDirectory + '/static',
       Views: serverDirectory + '/views',
       Constant: serverDirectory + '/constant',
@@ -20,13 +20,13 @@ const baseSetting = {
       Model: serverDirectory + '/model'
     }
   }
-}
+};
 
-const definePlugin = new webpack.DefinePlugin({})
+const definePlugin = new webpack.DefinePlugin({});
 
 module.exports = {
   baseSetting,
   definePlugin,
   serverDirectory,
   builtDirectory
-}
+};
