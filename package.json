@@ -13,7 +13,8 @@
     "start1:server": "node babel-polyfill babel-register ./server/app.js",
     "entry": "node ./server/entry.js",
     "build:server": "NODE_ENV=$env webpack --mode development --watch --colors --config ./webpack/server-dev.config.js",
-    "test:server": "NODE_ENV=server-dev mocha --recursive ./server/.setup.js $(find ./test -name '*.test.js')"
+    "test:server": "NODE_ENV=server-dev mocha --recursive ./server/.setup.js $(find ./test -name '*.test.js')",
+    "eslint": "./node_modules/.bin/eslint --fix $(find ./server -name '*.js')"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.4",
     "babel-plugin-webpack-alias": "^2.1.2",
     "babel-polyfill": "^6.26.0",
@@ -34,6 +36,11 @@
     "css-loader": "^0.28.11",
     "ejs": "^2.5.9",
     "ejs-loader": "^0.3.1",
+    "eslint": "^5.9.0",
+    "eslint-import-resolver-webpack": "^0.10.1",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-react": "^7.11.1",
     "externals-dependencies": "^1.0.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
