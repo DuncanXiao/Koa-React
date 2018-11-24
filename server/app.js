@@ -8,6 +8,11 @@ import http from 'http';
 // import jwtKoa from 'koa-jwt';
 // import { SECREAT } from './constant/config';
 
+process.on('unhandledRejection', (reason, p) => {
+  // eslint-disable-next-line no-console
+  console.log('Unhandled Rejection at:', p, 'reason:', reason);
+});
+
 const app = new Koa();
 
 app.use(async (ctx, next) => {

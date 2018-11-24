@@ -17,7 +17,7 @@ class SignModal extends React.Component {
 
   handleSubmit = () => {
     if (this.state.signIn) {
-      fetch('/api/login', {
+      fetch('/api/test', {
         method: 'Post',
         body: JSON.stringify({
           password: this.state.password,
@@ -27,10 +27,9 @@ class SignModal extends React.Component {
         // cookies.set("token", response.message.token, 1);
       }));
     } else {
-      fetch('/api/user', {
+      fetch('/api/test', {
         method: 'POST',
         body: JSON.stringify({
-          name: this.state.name,
           password: this.state.password,
           email: this.state.email
         })

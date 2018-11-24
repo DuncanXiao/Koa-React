@@ -2,7 +2,7 @@ import BaseModel from 'Model/baseModel';
 
 describe('#BaseModel', () => {
   const emailModel = new BaseModel({modelName: 'emailModel'});
-  const mockData = {email: 'test@qq.com', password: '123'}
+  const mockData = {email: 'test@qq.com', password: '123'};
 
   describe('#insertToSql', () => {
     afterEach( async () => {
@@ -58,5 +58,5 @@ describe('#BaseModel', () => {
       });
       expect(data[0]).to.eq(0);
     });
-  })
+  });
 });

@@ -2,14 +2,12 @@ import BaseController from '../baseController';
 import EmailModel from 'Model/emailModel';
 import * as _ from 'lodash';
 
-class LoginController extends BaseController {
+class SignupController extends BaseController {
 
-	validateEmail = async(ctx) => {
+	insertEmail = async(ctx) => {
 		try {
 			const emailModel = new EmailModel();
-			const data = await emailModel.findOneToSql({
-				where: ctx.request.body
-			});
+			const data = await emailModel.insertToSql(ctx.request.body);
 			if (_.isEmpty(data)) {
 				throw new Error('Email | password is invalidate');
 			}
@@ -22,4 +20,4 @@ class LoginController extends BaseController {
 	
 }
 
-export default LoginController;
+export default SignupController;

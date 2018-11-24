@@ -2,3 +2,4 @@ webpack/*
 dist/*
 node_modules/*
 src/*
+server/static/*

@@ -9,7 +9,7 @@ const inintModel = () => {
 	const ignoreFilesName = ['index.js'];
 	const modelFilesName = getFilesName({ignoreFilesName, rootPath: sequelizeModels});
 	modelFilesName.forEach((fileName) => {
-		const model = sequelize.import(`${__dirname}/sequelizes/${fileName}`);
+		const model = sequelize.import(`${sequelizeModels}/${fileName}`);
 		modelMap[`${fileName.replace(/.js/, '')}Model`] = model;
 	});
 };
@@ -32,7 +32,7 @@ class BaseModel {
 			const instance = await this.model.create(values, options);
 			return instance.dataValues;
 		} catch (error) {
-			throw `${error.message} sql: ${error.sql}`;
+			throw new Error(`${error.message} sql: ${error.sql}`);
 		}
 	}
 
@@ -41,7 +41,7 @@ class BaseModel {
 			const instance = await this.model.destroy(options);
 			return instance;
 		} catch (error) {
-			throw `${error.message} sql: ${error.sql}`;
+			throw new Error(`${error.message} sql: ${error.sql}`);
 		}
 	}
 
@@ -50,7 +50,16 @@ class BaseModel {
 			const instance = await this.model.update(values, options);
 			return instance;
 		} catch (error) {
-			throw `${error.message} sql: ${error.sql}`;
+			throw new Error(`${error.message} sql: ${error.sql}`);
+		}
+	}
+
+	async findOneToSql(options) {
+		try {
+			const instance = await this.model.findOne(options);
+			return instance;
+		} catch (error) {
+			throw new Error(`${error.message} sql: ${error.sql}`);
 		}
 	}
 }

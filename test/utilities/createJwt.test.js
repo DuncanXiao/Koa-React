@@ -5,7 +5,6 @@ describe('#signToken:', () => {
 	it('return token', () => {
 		const token = signToken({test: 'hello word.'});
 		const decode = jwt.decode(token);
-		// @ts-ignore
 		expect(decode.test).to.eq('hello word.');
 	});
 });
