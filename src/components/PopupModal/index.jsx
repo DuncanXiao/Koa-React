@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import { classNames } from 'classnames/bind';
-import _ from 'underscore';
+import _ from 'lodash';
 import styles from './style.scss';
 
 class PopupModal extends React.Component {

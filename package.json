@@ -71,6 +71,7 @@
     "koa-unless": "^1.0.7",
     "koa-views": "^6.1.4",
     "koa2-validation": "^0.1.0",
+    "lodash": "^4.17.11",
     "mysql2": "^1.5.3",
     "nodemailer": "^4.6.5",
     "prop-types": "^15.6.1",
@@ -79,7 +80,6 @@
     "react-dom": "^16.2.0",
     "sequelize": "^4.38.0",
     "shelljs": "^0.8.2",
-    "underscore": "^1.9.1",
     "validator": "^10.4.0",
     "whatwg-fetch": "^2.0.4"
   }

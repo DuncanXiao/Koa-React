@@ -13,6 +13,10 @@ testApi.get('/test', async(ctx) => {
 
 testApi.post('/test', async(ctx) => {
 	const token = signToken({title: 'yes'});
+	ctx.cookies.set('token', token, {
+		domain: process.env.DOMAIN,
+		expires: new Date('2018-11-19')
+	});
 	ctx.body = {token: token};
 });
 
