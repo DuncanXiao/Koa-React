@@ -3,6 +3,9 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <% for(var i=0; i < htmlWebpackPlugin.files.css.length; i++) { %>
+    <link rel="stylesheet" href=".<%= htmlWebpackPlugin.files.css[i] %>"></link>
+    <% } %>
 </head>
 <body>
     <div id='app-container'></div>

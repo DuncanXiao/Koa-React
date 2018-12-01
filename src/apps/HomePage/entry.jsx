@@ -1,4 +1,4 @@
-import HomePage from 'Apps/HomePage/index';
+import HomePage from './index';
 import { hot } from 'react-hot-loader';
 
 const Page = hot(module)(HomePage);
